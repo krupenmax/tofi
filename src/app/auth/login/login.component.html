@@ -1,8 +1,9 @@
 <mat-card [formGroup]="authForm">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <h2>Payment system</h2>
 
   <mat-form-field appearance="outline" class="form-field-rec">
-    <mat-label>Логин</mat-label>
+    <mat-label>E-mail</mat-label>
     <input matInput formControlName="login">
   </mat-form-field>
 
@@ -15,6 +16,7 @@
   </mat-form-field>
 
   <mat-card-footer>
-    <button mat-stroked-button color="primary" (click)="login()">Авторизоваться</button>
+    <button mat-stroked-button [disabled]="isLoading" (click)="login()">Авторизоваться</button>
+    <button mat-stroked-button [disabled]="isLoading" (click)="redirectToRegister()">Зарегистрироваться</button>
   </mat-card-footer>
 </mat-card>

@@ -1,0 +1,40 @@
+<mat-card [formGroup]="registerForm">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <h2>Регистрация</h2>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>E-mail</mat-label>
+    <input matInput formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>ФИО</mat-label>
+    <input matInput formControlName="fullName">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Номер телефона</mat-label>
+    <input matInput formControlName="phoneNumber">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Пароль</mat-label>
+    <input matInput formControlName="password" [type]="showPassword ? 'text' : 'password'">
+    <button mat-icon-button matSuffix (click)="showPassword = !showPassword">
+      <mat-icon>{{ showPassword ? "visibility_off" : "visibility"}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Проверка пароля</mat-label>
+    <input matInput formControlName="passwordCheck" [type]="showPasswordCheck ? 'text' : 'password'">
+    <button mat-icon-button matSuffix (click)="showPasswordCheck = !showPasswordCheck">
+      <mat-icon>{{ showPasswordCheck ? "visibility_off" : "visibility"}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-card-footer>
+    <button mat-stroked-button [disabled]="isLoading" (click)="register()">Зарегистрироваться</button>
+    <button mat-stroked-button [disabled]="isLoading" (click)="redirectToLogin()">Назад</button>
+  </mat-card-footer>
+</mat-card>

@@ -1,0 +1,6 @@
+<div [ngClass]="['icon', data?.type || '']">
+	<mat-icon *ngIf="data?.type === 'success'" svgIcon="i:check_done"></mat-icon>
+	<mat-icon *ngIf="data?.type === 'warning'" svgIcon="i:warning"></mat-icon>
+	<mat-icon *ngIf="data?.type === 'error'" svgIcon="i:cancel"></mat-icon>
+</div>
+<div class="message">{{ data?.message }}</div>

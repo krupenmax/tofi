@@ -1,0 +1,42 @@
+:host {
+	display: flex;
+	background: var(--mdc-snackbar-container-color);
+	box-shadow: 0 4px 20px rgba(63, 81, 94, 0.12);
+	border-radius: 4px;
+	width: 400px;
+}
+
+.icon {
+	display: flex;
+	padding: 10px;
+	color: #fff;
+	border-radius: 4px;
+	&.success {
+		background: rgba(22, 199, 95, 1);
+		mat-icon::ng-deep svg path {
+			stroke: currentColor;
+		}
+	}
+	&.warning {
+		background: rgba(255, 184, 0, 1);
+		mat-icon::ng-deep svg path {
+			fill: currentColor;
+		}
+	}
+	&.error {
+		background: rgba(233, 48, 23, 1);
+		mat-icon::ng-deep svg path {
+			fill: currentColor;
+		}
+	}
+}
+
+.message {
+	display: flex;
+	padding: 13px 16px;
+	font-size: 14px;
+	line-height: 18px;
+	letter-spacing: 0.005em;
+  color: #F4EBDB;
+	word-break: break-word;
+}

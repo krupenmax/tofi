@@ -119,3 +119,11 @@ input {
     margin-bottom: -1.25em;
  }
 }
+
+mat-progress-bar {
+  background-color: #8E9B97;
+}
+
+.mat-mdc-progress-bar {
+  --mdc-linear-progress-active-indicator-color: #2C4A52 !important;
+}

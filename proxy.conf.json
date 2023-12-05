@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "https://tofi.onrender.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": { "^/api": "" }
+  }
+}

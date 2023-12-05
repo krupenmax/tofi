@@ -37,3 +37,85 @@ $tofi-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  background-color: #2C4A52;
+  color: #F4EBDB;
+}
+
+button {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-card {
+  background-color: #537072 !important;
+}
+
+button {
+  color: #F4EBDB !important;
+}
+
+input {
+  color: #F4EBDB !important;
+}
+
+.form-field-rec {
+  .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+    background-color: #F4EBDB;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #F4EBDB;
+  }
+
+  .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #F4EBDB;
+  }
+
+  .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+    color: #F4EBDB;
+    opacity: 0.8;
+  }
+
+  .mat-input-element {
+    caret-color: #F4EBDB;
+  }
+
+  .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
+    caret-color: #F4EBDB;
+  }
+
+  .mat-form-field-label {
+    color: #F4EBDB;
+  }
+
+  .mat-form-field.mat-focused .mat-form-field-label {
+    color: #F4EBDB;
+  }
+
+  .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: #F4EBDB;
+  }
+
+  .mat-focused .mat-form-field-label {
+    color: #F4EBDB;
+  }
+
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label, .mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label--float-above {
+    color: #F4EBDB;
+  }
+
+  --mdc-outlined-text-field-focus-outline-color: #F4EBDB;
+
+  mat-label {
+    color: #F4EBDB;
+  }
+
+  .mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after {
+    color: #F4EBDB;
+  }
+
+  .mat-form-field-wrapper{
+    margin-bottom: -1.25em;
+ }
+}

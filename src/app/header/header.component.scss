@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 32px;
+  background-color: #537072;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 16px;
+}

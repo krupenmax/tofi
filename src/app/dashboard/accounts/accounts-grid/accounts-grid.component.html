@@ -1,0 +1,55 @@
+
+<button mat-stroked-button class="add-btn" (click)="addAccount()">
+  <mat-icon>add</mat-icon>
+</button>
+
+<table mat-table matSort [dataSource]="tableData">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Наименование</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Дата</th>
+    <td mat-cell *matCellDef="let element">{{ element.date | date : "dd.MM.YYYY" }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="balance">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Баланс</th>
+    <td mat-cell *matCellDef="let element">{{ element.balance }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="currency">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Валюта</th>
+    <td mat-cell *matCellDef="let element">{{ element.currency }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="isBlocked">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Заблокирован</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon [svgIcon]="!element.is_blocked ? 'i:block' : 'i:check_done'"></mat-icon>
+    </td>
+  </ng-container>
+
+  <!-- <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="editAccount(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container> -->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+
+<!-- <mat-paginator
+  [length]="tableData.data && tableData.data.length"
+  [pageSize]="10"
+  [pageSizeOptions]="[10, 20]"
+  appearance="fill">
+</mat-paginator> -->

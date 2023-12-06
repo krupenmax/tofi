@@ -1,1 +1,20 @@
-<p>main-panel works!</p>
+<div class="navbar">
+  <button mat-stroked-button [ngClass]="{ 'active' : activeTab === tabType.accounts }" (click)="activeTab = tabType.accounts">
+    Счета
+    <mat-icon matSuffix>account_balance_wallet</mat-icon>
+  </button>
+
+  <button mat-stroked-button [ngClass]="{ 'active' : activeTab === tabType.deposits }" (click)="activeTab = tabType.deposits">
+    Депозиты
+    <mat-icon matSuffix>card_travel</mat-icon>
+  </button>
+
+  <button mat-stroked-button [ngClass]="{ 'active' : activeTab === tabType.credits }" (click)="activeTab = tabType.credits">
+    Кредиты
+    <mat-icon matSuffix>attach_money</mat-icon>
+  </button>
+</div>
+
+<section class="content-container">
+  <app-accounts-grid *ngIf="activeTab === tabType.accounts"></app-accounts-grid>
+</section>

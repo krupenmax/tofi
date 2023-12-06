@@ -1,0 +1,6 @@
+<div class="header-container">
+  <span>{{userInfo?.fullName}}</span>
+  <button *ngIf="isLogged" mat-icon-button class="exit-btn" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,37 @@
+:host {
+  margin-top: 16px;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+
+  .mat-table {
+    border-radius: 16px;
+  }
+
+  animation-name: fadeIn;
+  animation-duration: .5s;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+table {
+  background-color: #20353b;
+
+  td, th {
+    color: #F4EBDB;
+  }
+}
+
+.add-btn {
+  background-color: #20353b;
+  margin-bottom: 16px;
+  flex: 0 1;
+  padding: 8px;
+}

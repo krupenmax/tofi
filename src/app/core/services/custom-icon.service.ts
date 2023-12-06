@@ -23,5 +23,17 @@ export class CustomIconService {
 			"cancel",
 			this.domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/cancel.svg")
 		);
+
+    this.matIconRegistry.addSvgIconInNamespace(
+			"i",
+			"check_done",
+			this.domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/check_done.svg")
+		);
+
+    this.matIconRegistry.addSvgIconInNamespace(
+			"i",
+			"block",
+			this.domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/block.svg")
+		);
   }
 }

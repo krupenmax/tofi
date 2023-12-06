@@ -62,7 +62,7 @@ export class RegisterComponent implements OnDestroy {
       this.isLoading = true;
       const fv = this.registerForm.getRawValue();
       const body: RegisterUserRequest = this.transformForm(fv);
-      this.backendService.register$(body)
+      this.backendService.auth.register$(body)
         .pipe(
           takeUntil(this.destroy$$),
           finalize(() => {

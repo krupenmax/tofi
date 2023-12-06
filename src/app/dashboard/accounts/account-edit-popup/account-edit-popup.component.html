@@ -1,0 +1,23 @@
+<header><h2>Добавление счета</h2></header>
+
+<section [formGroup]="accountForm">
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Наименование счета</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Валюта</mat-label>
+    <mat-select formControlName="currency">
+      <mat-option value="">Не выбрано</mat-option>
+      <mat-option value="BYN">BYN</mat-option>
+      <mat-option value="USD">USD</mat-option>
+      <mat-option value="EUR">EUR</mat-option>
+    </mat-select>
+  </mat-form-field>
+</section>
+
+<mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close [disabled]="isLoading">Назад</button>
+  <button mat-stroked-button [disabled]="isLoading" (click)="handleSave()">Добавить</button>
+</mat-dialog-actions>

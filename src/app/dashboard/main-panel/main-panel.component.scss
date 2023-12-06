@@ -1,0 +1,39 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 32px;
+  box-sizing: border-box;
+  flex: 1 1;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  background-color: #20353b;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  justify-content: center;
+
+  button {
+    font-size: 20px;
+    width: 200px;
+    padding: 32px;
+    background-color: #2C4A52;
+  }
+}
+
+section {
+  // height: 100%;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.active {
+  background-color: #537072 !important;
+}

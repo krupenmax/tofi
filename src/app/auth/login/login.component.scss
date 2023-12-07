@@ -5,6 +5,12 @@
   align-items: center;
   flex: 1 1;
 
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   animation-name: fadeIn;
   animation-duration: .5s;
 

@@ -1,0 +1,18 @@
+:host {
+  background-color: #20353b;
+  padding: 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-dialog-actions {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  button {
+    flex: 1 1;
+  }
+}

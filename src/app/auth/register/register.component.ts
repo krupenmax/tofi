@@ -14,6 +14,7 @@ import { BackendService } from "src/app/core/services/backend.service";
 import { passwordMatchValidator } from "src/app/shared/custom.validators";
 import { Subject, takeUntil, finalize } from "rxjs";
 import { SnackBarComponent } from "src/app/shared/snack-bar/snack-bar.component";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @Component({
   selector: "app-register",
@@ -29,6 +30,7 @@ import { SnackBarComponent } from "src/app/shared/snack-bar/snack-bar.component"
     ReactiveFormsModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatCheckboxModule,
     CommonModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -49,11 +51,12 @@ export class RegisterComponent implements OnDestroy {
     private readonly snackBar: MatSnackBar
   ) {
     this.registerForm = this.fb.group({
-      email: this.fb.control<string>("", [Validators.required]),
-      fullName: this.fb.control<string>("", [Validators.required]),
-      phoneNumber: this.fb.control<string>("", [Validators.required]),
+      email: this.fb.control<string>("", [Validators.required, Validators.maxLength(320)]),
+      fullName: this.fb.control<string>("", [Validators.required, Validators.maxLength(90)]),
+      phoneNumber: this.fb.control<string>("", [Validators.required, Validators.minLength(12), Validators.maxLength(14)]),
       password: this.fb.control<string>("", [Validators.required]),
       passwordCheck: this.fb.control<string>("", [Validators.required]),
+      twoFactorAuth: this.fb.control<boolean>(false, [Validators.required])
     }, { validators: passwordMatchValidator("password", "passwordCheck") });
   }
 
@@ -100,7 +103,8 @@ export class RegisterComponent implements OnDestroy {
       full_name: fv.fullName,
       phone_number: fv.phoneNumber,
       password: fv.password,
-      is_enabled: true
+      is_enabled: true,
+      two_factor_auth: fv.twoFactorAuth
     };
   }
 }

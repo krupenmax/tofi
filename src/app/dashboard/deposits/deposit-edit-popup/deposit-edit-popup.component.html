@@ -1,0 +1,41 @@
+<header><h2>Добавление депозита</h2></header>
+
+<section [formGroup]="depositForm">
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Идентификатор счета</mat-label>
+    <mat-select formControlName="account_id">
+      <mat-option value="">Не выбрано</mat-option>
+      <mat-option *ngFor="let account of accounts" [value]="account.id">{{account.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Период</mat-label>
+    <mat-select formControlName="term">
+      <mat-option value="">Не выбрано</mat-option>
+      <mat-option value="MONTH_3">3 месяца</mat-option>
+      <mat-option value="MONTH_6">6 месяцев</mat-option>
+      <mat-option value="MONTH_12">Год</mat-option>
+      <mat-option value="PERPETUAL">Бессрочный</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Сумма</mat-label>
+    <input type="number" matInput formControlName="amount">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Период</mat-label>
+    <mat-select formControlName="deposit_type">
+      <mat-option value="">Не выбрано</mat-option>
+      <mat-option value="REVOCABLE">Отзывной</mat-option>
+      <mat-option value="IRREVOCABLE">Неотзывной</mat-option>
+    </mat-select>
+  </mat-form-field>
+</section>
+
+<mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close [disabled]="isLoading">Назад</button>
+  <button mat-stroked-button [disabled]="isLoading" (click)="handleSave()">Добавить</button>
+</mat-dialog-actions>

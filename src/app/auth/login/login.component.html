@@ -15,8 +15,17 @@
     </button>
   </mat-form-field>
 
+  <mat-form-field *ngIf="hasTwoFactor" appearance="outline" class="form-field-rec">
+    <mat-label>Код</mat-label>
+    <input matInput type="number" [formControl]="twoFactorControl">
+    <button mat-icon-button matSuffix (click)="refreshCode()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </mat-form-field>
+
   <mat-card-footer>
     <button mat-stroked-button [disabled]="isLoading" (click)="login()">Авторизоваться</button>
     <button mat-stroked-button [disabled]="isLoading" (click)="redirectToRegister()">Зарегистрироваться</button>
+    <button *ngIf="hasTwoFactor" mat-stroked-button [disabled]="isLoading" (click)="refreshPage()">Ввести другие данные</button>
   </mat-card-footer>
 </mat-card>

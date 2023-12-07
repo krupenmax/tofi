@@ -40,3 +40,88 @@ export interface UserInfo {
   sub: string;
   email: string;
 }
+
+export interface Deposit {
+  id: number;
+  date: string;
+  term: DepositTerm;
+  amount: number;
+  compensationAmount: number;
+  status: DepositStatus,
+  type: DepositType,
+  userId: number,
+  accountId: number
+}
+
+export enum DepositTerm {
+  ThreeMonth = "MONTH_3",
+  SixMonth = "MONTH_6",
+  TwelveMonth = "MONTH_12",
+  Perpetual = "PERPETUAL"
+}
+
+export enum DepositStatus {
+  New = "NEW",
+  Approve = "APPROVED",
+  OnCompensation = "ONCOMPENSATION",
+  Closed = "CLOSED"
+}
+
+export enum DepositType {
+  Revocable = "REVOCABLE",
+  Irrevocable = "IRREVOCABLE"
+}
+
+export interface CreateDepositDto {
+  account_id: number;
+  term: DepositTerm,
+  amount: number;
+  deposit_type: DepositType
+}
+
+export interface Credit {
+  id: number;
+  name: string;
+  date: string;
+  user_id: number;
+  account_id: number;
+  term: CreditTerm;
+  amount_given: number;
+  debt: number;
+  next_pay_date: string;
+  per_month_pay_sum: number;
+  penya: number;
+  status: CreditStatus;
+  payment_type: CreditPaymentType;
+  is_notification_enabled: boolean;
+}
+
+export enum CreditTerm {
+  ThreeMonth = "MONTH_3",
+  SixMonth = "MONTH_6",
+  TwelveMonth = "MONTH_12"
+}
+
+export enum CreditStatus {
+  New = "NEW",
+  Approved = "APPROVED",
+  Paid = "PAID"
+}
+
+export enum CreditPaymentType {
+  Auto = "AUTO",
+  Manual = "MANUAL"
+}
+
+export interface CreateCreditDto {
+  name: string;
+  account_id: number;
+  term: CreditTerm,
+  payment_type: CreditPaymentType,
+  amount_given: number,
+  is_notification_enabled: boolean
+}
+
+export interface ConfirmOtpRequest {
+  otp_code: number;
+}

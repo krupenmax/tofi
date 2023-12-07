@@ -33,6 +33,11 @@
     </button>
   </mat-form-field>
 
+  <div class="two-factor-container">
+    <label>Двухфакторная аутентификация</label>
+    <mat-checkbox formControlName="twoFactorAuth"></mat-checkbox>
+  </div>
+
   <mat-card-footer>
     <button mat-stroked-button [disabled]="isLoading" (click)="register()">Зарегистрироваться</button>
     <button mat-stroked-button [disabled]="isLoading" (click)="redirectToLogin()">Назад</button>

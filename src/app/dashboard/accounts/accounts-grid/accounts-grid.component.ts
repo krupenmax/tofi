@@ -11,6 +11,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule, MatDialog } from "@angular/material/dialog";
 import { AccountEditPopupComponent, AccountPopupPayload } from '../account-edit-popup/account-edit-popup.component';
 import { DatePipe } from '@angular/common';
+import { AccountPaymentPopupComponent } from '../account-payment-popup/account-payment-popup.component';
 
 @Component({
   selector: 'app-accounts-grid',
@@ -34,7 +35,7 @@ export class AccountsGridComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) matPaginator!: MatPaginator;
 
   public isLoading = false;
-  public displayedColumns = ["name", "date", "balance", "currency", "isBlocked"];
+  public displayedColumns = ["id", "name", "date", "balance", "currency", "isBlocked"];
   public tableData: MatTableDataSource<Account>;
 
   private readonly destroy$$ = new Subject<void>();
@@ -95,6 +96,23 @@ export class AccountsGridComponent implements OnInit, OnDestroy {
         mode: "edit",
         userId: userId as number,
         account
+      }
+    });
+
+    dialogRef.afterClosed()
+      .pipe(takeUntil(this.destroy$$))
+      .subscribe((res) => {
+        if (res) this.getData();
+      });
+  }
+
+  public openPaymentPopup(): void {
+    const userId = this.authService.getUserInfo()?.userId;
+    const dialogRef = this.dialog.open(AccountPaymentPopupComponent, {
+      autoFocus: false,
+      data: {
+        accounts: this.tableData.data,
+        userId
       }
     });
 

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Account, ConfirmOtpRequest, CreateAccountDto, CreateDepositDto, Credit, Deposit, JwtToken, Login, RegisterUserRequest } from '..';
+import { Account, ConfirmOtpRequest, CreateAccountDto, CreateCreditDto, CreateDepositDto, Credit, Deposit, JwtToken, Login, RegisterUserRequest } from '..';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-export const apiUrl = "api/api";
+export const apiUrl = "api";
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +39,6 @@ export class BackendService {
   public readonly credits = {
     get$: (userId: number): Observable<Credit[]> => this.httpClient.get<Credit[]>(`${apiUrl}/users/${userId}/credit`, { withCredentials: true }),
 
+    post$: (body: CreateCreditDto, userId: number): Observable<void> => this.httpClient.post<void>(`${apiUrl}/users/${userId}/credit`, body, { withCredentials: true })
   }
 }

@@ -1,0 +1,48 @@
+:host {
+  background-color: #2C4A52;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  width: 400px;
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+header {
+  text-align: center;
+  h2 {
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+
+section {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+mat-dialog-actions {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  button {
+    flex: 1 1;
+  }
+}
+
+.notification-field {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 0 16px 0;
+}

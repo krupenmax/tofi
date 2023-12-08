@@ -4,6 +4,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { AccountsGridComponent } from "../accounts/accounts-grid/accounts-grid.component";
 import { CommonModule } from "@angular/common";
 import { DepositsGridComponent } from "../deposits/deposits-grid/deposits-grid.component";
+import { CreditsGridComponent } from "../credits/credits-grid/credits-grid.component";
 
 export enum MainPanelTab {
   accounts = "accounts",
@@ -20,6 +21,7 @@ export enum MainPanelTab {
     MatIconModule,
     AccountsGridComponent,
     DepositsGridComponent,
+    CreditsGridComponent,
     CommonModule
   ],
   standalone: true

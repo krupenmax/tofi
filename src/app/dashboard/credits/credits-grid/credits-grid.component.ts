@@ -20,6 +20,9 @@ import { PlaceholderPipe } from "src/app/shared/pipes/placeholder.pipe";
 import { CreditEditPopupComponent } from "../credit-edit-popup/credit-edit-popup.component";
 import { CreditPaymentTypePipe } from "src/app/shared/pipes/credit-payment-type.pipe";
 import { CreditStatusPipe } from "src/app/shared/pipes/credit-status.pipe";
+import { CreditPaymentPopupComponent } from "../credit-payment-popup/credit-payment-popup.component";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
+import { SnackBarComponent } from "src/app/shared/snack-bar/snack-bar.component";
 
 @Component({
   selector: "app-credits-grid",
@@ -38,7 +41,8 @@ import { CreditStatusPipe } from "src/app/shared/pipes/credit-status.pipe";
     CreditPaymentTypePipe,
     CreditStatusPipe,
     PlaceholderPipe,
-    DepositStatusPipe
+    DepositStatusPipe,
+    MatSnackBarModule
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -63,7 +67,8 @@ export class CreditsGridComponent {
     private readonly backendService: BackendService,
     private readonly cdr: ChangeDetectorRef,
     private readonly authService: AuthService,
-    private readonly dialog: MatDialog
+    private readonly dialog: MatDialog,
+    private readonly snackBar: MatSnackBar
   ) {
     this.tableData = new MatTableDataSource<Credit>();
   }
@@ -101,7 +106,7 @@ export class CreditsGridComponent {
       });
   }
 
-  public addDeposit(): void {
+  public addCredit(): void {
     const userId = this.authService.getUserInfo()?.userId;
     const dialogRef = this.dialog.open<CreditEditPopupComponent, AccountPopupPayload>(CreditEditPopupComponent, {
       autoFocus: false,
@@ -114,7 +119,34 @@ export class CreditsGridComponent {
     dialogRef.afterClosed()
       .pipe(takeUntil(this.destroy$$))
       .subscribe((res) => {
-        if (res) this.getData();
+        if (res) {
+          this.getData();
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            data: { type: "success", message: "Кредит успешно оформлен" },
+          });
+        }
+      });
+  }
+
+  public payForCredit(): void {
+    const userId = this.authService.getUserInfo()?.userId;
+    const dialogRef = this.dialog.open<CreditPaymentPopupComponent, AccountPopupPayload>(CreditPaymentPopupComponent, {
+      autoFocus: false,
+      data: {
+        mode: "add",
+        userId: userId as number
+      }
+    });
+
+    dialogRef.afterClosed()
+      .pipe(takeUntil(this.destroy$$))
+      .subscribe((res) => {
+        if (res) {
+          this.getData();
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            data: { type: "success", message: "Оплата за кредит прошла успешно" },
+          });
+        }
       });
   }
 

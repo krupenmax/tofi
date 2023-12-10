@@ -1,0 +1,21 @@
+<header><h2>Оплата за кредит</h2></header>
+
+<section [formGroup]="creditForm">
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Наименование кредита</mat-label>
+    <mat-select formControlName="credit_id">
+      <mat-option value="">Не выбрано</mat-option>
+      <mat-option *ngFor="let credit of credits" [value]="credit.id">{{credit.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Сумма</mat-label>
+    <input matInput type="number" formControlName="sum_to_pay">
+  </mat-form-field> -->
+</section>
+
+<mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close [disabled]="isLoading">Отменить</button>
+  <button mat-stroked-button [disabled]="isLoading" (click)="handleSave()">Оплатить</button>
+</mat-dialog-actions>

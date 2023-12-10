@@ -1,0 +1,33 @@
+<header><h2>Создание перевода</h2></header>
+
+<section [formGroup]="transferForm">
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Отправитель</mat-label>
+    <input matInput formControlName="sender_id">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Получатель</mat-label>
+    <input matInput formControlName="receiver_id">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Сумма</mat-label>
+    <input type="number" matInput formControlName="sum">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="form-field-rec">
+    <mat-label>Валюта</mat-label>
+    <mat-select formControlName="currency">
+      <mat-option value="">Не выбрано</mat-option>
+      <mat-option value="BYN">BYN</mat-option>
+      <mat-option value="USD">USD</mat-option>
+      <mat-option value="EUR">EUR</mat-option>
+    </mat-select>
+  </mat-form-field>
+</section>
+
+<mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Отменить</button>
+  <button mat-stroked-button (click)="handleTransfer()">Перевести</button>
+</mat-dialog-actions>

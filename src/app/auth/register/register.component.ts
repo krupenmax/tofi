@@ -51,9 +51,9 @@ export class RegisterComponent implements OnDestroy {
     private readonly snackBar: MatSnackBar
   ) {
     this.registerForm = this.fb.group({
-      email: this.fb.control<string>("", [Validators.required, Validators.maxLength(320)]),
+      email: this.fb.control<string>("", [Validators.required, Validators.maxLength(320), Validators.email]),
       fullName: this.fb.control<string>("", [Validators.required, Validators.maxLength(90)]),
-      phoneNumber: this.fb.control<string>("", [Validators.required, Validators.minLength(12), Validators.maxLength(14)]),
+      phoneNumber: this.fb.control<string>("", [Validators.required, Validators.max(375999999999), Validators.min(375000000000)]),
       password: this.fb.control<string>("", [Validators.required]),
       passwordCheck: this.fb.control<string>("", [Validators.required]),
       twoFactorAuth: this.fb.control<boolean>(false, [Validators.required])
@@ -74,7 +74,12 @@ export class RegisterComponent implements OnDestroy {
           })
         )
         .subscribe({
-          next: () => this.redirectToLogin(),
+          next: () => {
+            this.snackBar.openFromComponent(SnackBarComponent, {
+              data: { type: "success", message: "Аккаунт зарегистрирован "}
+            });
+            this.redirectToLogin();
+          },
           error: (err) => {
             const message = err.error.error_description.toString();
             this.snackBar.openFromComponent(SnackBarComponent, {

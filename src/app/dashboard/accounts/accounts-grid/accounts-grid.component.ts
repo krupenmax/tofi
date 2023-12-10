@@ -12,6 +12,10 @@ import { MatDialogModule, MatDialog } from "@angular/material/dialog";
 import { AccountEditPopupComponent, AccountPopupPayload } from '../account-edit-popup/account-edit-popup.component';
 import { DatePipe } from '@angular/common';
 import { AccountPaymentPopupComponent } from '../account-payment-popup/account-payment-popup.component';
+import { AccountTransferPopupComponent } from '../account-transfer-popup/account-transfer-popup.component';
+import { MatSlideToggleChange, MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBarComponent } from 'src/app/shared/snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-accounts-grid',
@@ -25,7 +29,9 @@ import { AccountPaymentPopupComponent } from '../account-payment-popup/account-p
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    DatePipe
+    DatePipe,
+    MatSlideToggleModule,
+    MatSnackBarModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -44,7 +50,8 @@ export class AccountsGridComponent implements OnInit, OnDestroy {
     private readonly backendService: BackendService,
     private readonly cdr: ChangeDetectorRef,
     private readonly authService: AuthService,
-    private readonly dialog: MatDialog
+    private readonly dialog: MatDialog,
+    private readonly snackBar: MatSnackBar
   ) {
     this.tableData = new MatTableDataSource<Account>();
   }
@@ -84,7 +91,12 @@ export class AccountsGridComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed()
       .pipe(takeUntil(this.destroy$$))
       .subscribe((res) => {
-        if (res) this.getData();
+        if (res) {
+          this.getData();
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            data: { type: "success", message: "Счет успешно открыт" }
+          });
+        }
       });
   }
 
@@ -119,7 +131,44 @@ export class AccountsGridComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed()
       .pipe(takeUntil(this.destroy$$))
       .subscribe((res) => {
-        if (res) this.getData();
+        if (res) {
+          this.getData();
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            data: { type: "success", message: "Счет успешно пополнен" }
+          });
+        }
+      });
+  }
+
+  public openTransferPopup(): void {
+    const dialogRef = this.dialog.open(AccountTransferPopupComponent, {
+      data: { userId: this.authService.getUserInfo()?.userId }
+    });
+
+    dialogRef.afterClosed()
+      .pipe(takeUntil(this.destroy$$))
+      .subscribe((res) => {
+        if (res) {
+          this.getData();
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            data: { type: "success", message: "Перевод выполнен успешно" }
+          });
+        }
+      });
+  }
+
+  public handleAccountStatusChange(value: MatSlideToggleChange, accountId: number) {
+    const newValue = !value.checked;
+    const userId = this.authService.getUserInfo()?.userId as number;
+    this.backendService.accounts.changeStatus$(accountId, userId, newValue)
+      .pipe(takeUntil(this.destroy$$))
+      .subscribe({
+        next: () => {
+          this.getData();
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            data: { type: "success", message: "Статус счета успешно изменен" }
+          });
+        }
       });
   }
 

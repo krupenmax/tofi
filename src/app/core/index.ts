@@ -125,3 +125,27 @@ export interface CreateCreditDto {
 export interface ConfirmOtpRequest {
   otp_code: number;
 }
+
+export interface TransferRequest {
+  sender_id: number;
+  receiver_id: number;
+  sum: number;
+  currency: string;
+}
+
+export interface ChangeAccountDto {
+  name: string
+}
+
+export interface MakePaymentRequest {
+  sum_to_pay: number;
+}
+
+export interface CreditPaymentInfoDto {
+  credit_name: string;
+  credit_id: number;
+  sum_per_month: number;
+  penya: number;
+  debt_after_payment: number;
+  sum_to_pay: number;
+}

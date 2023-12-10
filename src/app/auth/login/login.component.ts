@@ -13,6 +13,10 @@ import { MatSnackBarModule, MatSnackBar } from "@angular/material/snack-bar";
 import { SnackBarComponent } from "src/app/shared/snack-bar/snack-bar.component";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { CommonModule } from "@angular/common";
+import { initializeApp } from "firebase/app";
+import * as firebase from "firebase/app";
+import { environment } from "src/environments/environment";
+import { BackendService } from "src/app/core/services/backend.service";
 
 @Component({
   selector: "app-login",
@@ -27,7 +31,7 @@ import { CommonModule } from "@angular/common";
     ReactiveFormsModule,
     MatSnackBarModule,
     MatProgressBarModule,
-    CommonModule
+    CommonModule,
   ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -46,12 +50,14 @@ export class LoginComponent implements OnDestroy {
     private readonly authService: AuthService,
     private readonly router: Router,
     private readonly snackBar: MatSnackBar,
-    private readonly cdr: ChangeDetectorRef
+    private readonly cdr: ChangeDetectorRef,
+    backend: BackendService
   ) {
     this.authForm = this.fb.group({
       login: this.fb.control<string>("", [Validators.required]),
       password: this.fb.control<string>("", [Validators.required])
     });
+    backend.accounts.get$(42).subscribe(console.log);
   }
 
   public login(): void {

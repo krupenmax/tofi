@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Account, ChangeAccountDto, ConfirmOtpRequest, CreateAccountDto, CreateCreditDto, CreateDepositDto, Credit, CreditPaymentInfoDto, Deposit, JwtToken, Login, MakePaymentRequest, RegisterUserRequest, TransferRequest } from '..';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { getStorage } from 'firebase/storage';
 
-export const apiUrl = "api";
+export const apiUrl = environment.production ? "https://tofi.onrender.com" : "api";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    const storage = getStorage();
+    console.log(storage);
+  }
 
   public readonly auth = {
     login$: (body: Login): Observable<JwtToken> => this.httpClient.post<JwtToken>(`${apiUrl}/auth/login`, body),
